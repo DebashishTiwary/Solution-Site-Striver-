@@ -24,21 +24,22 @@ body{
     width: 80%;
     height: max-content;
     border: 2px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#questionbox{
-    width: 75%;
-    height: max-content;
-    border: 2px solid black;
     margin: auto;
     margin-top: 3rem;
+
+}
+#questionbox{
+    /* width: 75%; */
+    height: max-content;
+    /* border: 2px solid black; */
+    margin: auto;
+    /* margin-top: 3rem; */
     background-color: black;
     color: white;
-    border-radius: 13px;
+    /* border-radius: 13px; */
+    border-bottom: 2px solid yellow;
 }
-.language-java{
-    width: 75%;
+.content .solution pre{
     margin: auto;
+    border-radius: 0px;
 }
