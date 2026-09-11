@@ -169,6 +169,8 @@ Explanation: No subsequence can sum upto 10
             return true;
         else if(ind==arr.length)
             return false;
+        else if(sum>k)
+            return false;
         else{
             return (checkSum(arr,ind+1,sum+arr[ind],k)||
             checkSum(arr,ind+1,sum,k));
