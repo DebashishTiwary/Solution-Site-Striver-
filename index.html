@@ -235,6 +235,54 @@ Output: [[2,2,2,2],[2,3,3],[3,5]]
                 </code>
             </pre>
         </div>
+        <div id="questionbox">
+            LC-40:Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sum to target.
+
+Each number in candidates may only be used once in the combination.
+
+Note: The solution set must not contain duplicate combinations.
+
+Example 1:
+
+Input: candidates = [10,1,2,7,6,1,5], target = 8
+Output: 
+[
+[1,1,6],
+[1,2,5],
+[1,7],
+[2,6]
+]
+        </div>
+        <div id="solution">
+            <pre>
+                <code class="language-java">
+                     public void solve( List<List<Integer>> finalList,List<Integer> temp,int[] ar,int target,int index){
+        if(target==0){
+            finalList.add(new ArrayList<>(temp));
+            return;
+        }
+        for(int i=index;i<ar.length;i++){
+            if(i>index && ar[i]==ar[i-1])
+                continue;
+            if(ar[i]>target)
+                break;
+            temp.add(ar[i]);
+            solve(finalList,temp,ar,target-ar[i],i+1);
+            temp.remove(temp.size()-1);
+        }
+    }
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        List<List<Integer>> finalList=new ArrayList<>();
+        List<Integer> temp=new ArrayList<>();
+        solve(finalList,temp,candidates,target,0);
+
+        return finalList;
+    
+    }
+                </code>
+            </pre>
+        </div>
     </div>
     
     
