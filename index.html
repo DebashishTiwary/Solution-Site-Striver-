@@ -331,22 +331,54 @@ There are no other valid combinations.
             <pre>
                 <code class="language-java">
 class Solution {
-    public void CS3(List<List<Integer>> finalList,List<Integer> temp,int index,int k,int target) {
+    public void CS3(List&lt;List<Integer>> finalList,List<Integer> temp,int index,int k,int target) {
 		if(k==0 && target==0) {
-			finalList.add(new ArrayList<>(temp));
+			finalList.add(new ArrayList&lt;>(temp));
 		}
-        if(target<=0)
+        if(target&lt;=0)
             return;
 		for(int i=index;i<10;i++) {
-			if(target<0 || 0>=k)break;
+			if(target&lt;0 || 0>=k)break;
 			temp.add(i);
 			CS3(finalList,temp,i+1,k-1,target-i);
 			temp.remove(temp.size()-1);
 		}
 	}
-    public List<List<Integer>> combinationSum3(int k, int n) {
-        List<List<Integer>> finalList=new ArrayList<>();
-		CS3(finalList,new ArrayList<>(),1,k,n);
+    public List&lt;List<Integer>> combinationSum3(int k, int n) {
+        List&lt;List<Integer>> finalList=new ArrayList<>();
+		CS3(finalList,new ArrayList&lt;>(),1,k,n);
+        return finalList;
+    }
+}
+                </code>
+            </pre>
+        </div>
+        <div id="questionbox">
+LC:17-Letter Combinations of a Phone Number
+Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.
+A mapping of digits to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+        </div>
+        <div id="solution">
+            <pre>
+                <code class="language-java">
+                    class Solution {
+    public void solve(List&lt;String> finalList,String[] store,String digits,int depth,String val,int index){
+        if(depth==0){
+            finalList.add(val);
+        }
+        for(int i=index;i&lt;digits.length();i++){
+            String temp=store[digits.charAt(i)-'0'-2];
+            for(int j=0;j&lt;temp.length();j++){
+                val=val+temp.charAt(j);
+                solve(finalList,store,digits,depth-1,val,i+1);
+                val= val.substring(0, val.length() - 1);
+            }
+        }
+    }
+    public List&lt;String> letterCombinations(String digits) {
+        String[] store={"abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        List<String> finalList=new ArrayList<>();
+        solve(finalList,store,digits,digits.length(),"",0);
         return finalList;
     }
 }
